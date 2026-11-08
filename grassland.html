@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iH Studio — GrassLand</title>
+<link rel="icon" type="image/png" href="ih_studio_web_logo.png">
+<style>
+  :root{
+    --bg-fallback: #0b1a10;
+    --panel: rgba(21, 26, 33, 0.7);
+    --text:#e9edf2;
+    --muted:#a0b0c4;
+    --border: rgba(255, 255, 255, 0.15);
+    --green:#4ade4a;
+    --accent:#8b5cf6;
+    --nav-h: 72px;
+  }
+  *{box-sizing:border-box;}
+  
+  html { 
+    background-color: var(--bg-fallback); 
+    overflow-x: hidden; 
+  }
+  
+  body{
+    margin:0; min-height:100vh; display:flex; flex-direction:column;
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color:var(--text); padding-top:var(--nav-h);
+    position: relative; z-index: 1;
+    overflow-x: hidden;
+  }
+
+  .bg-image {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    object-fit: cover; z-index: -2; opacity: 0.75; filter: blur(2px);
+  }
+
+  .bg-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.35); z-index: -1; pointer-events: none;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .navbar{
+    position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+    display:flex; align-items:center; gap:16px; padding:0 20px;
+    background:rgba(0, 0, 0, 0.85);
+    backdrop-filter:blur(12px); border-bottom:1px solid var(--border); z-index:1000;
+  }
+  
+  .logo-img {
+    height: 56px; 
+    width: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .nav-links{list-style:none; display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:0 0 0 auto; padding:0;}
+  .nav-links li{display:flex; align-items:center;}
+  .nav-links li + li::before{content:"|"; color:var(--border); margin:0 2px;}
+  .nav-links a{display:block; padding:8px 14px; border-radius:9px; color:var(--muted); font-weight:600; font-size:.95rem; transition:.18s;}
+  .nav-links a:hover{color:#fff; background:rgba(255,255,255,.1);}
+  .nav-links a.active{color:#fff; background:rgba(74,222,74,.35);}
+
+  main{flex:1; width:100%; max-width:900px; margin:0 auto; padding:70px 22px 90px;}
+
+  .page-title{
+    margin:0 0 12px; text-align:center;
+    font-size:clamp(2.6rem,8vw,4.8rem);
+    font-weight:900; letter-spacing:-1.5px;
+    color:var(--green);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 30px rgba(74,222,74,.5);
+  }
+  .page-sub{ 
+    text-align:center; color:#e2e8f0; margin:0 0 40px; 
+    font-size:1rem; letter-spacing:2px; text-transform:uppercase;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+    font-weight: 600;
+  }
+
+  .card{
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:18px; padding:26px 28px; margin-bottom:24px;
+    line-height:1.7; backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .card h2{margin:0 0 12px; font-size:1.2rem; color:#fff;}
+  .card p{margin:0; color:#cfd6e0;}
+  .placeholder{color:var(--muted); font-style:italic;}
+  .empty{
+    margin-top:14px; padding:18px; text-align:center;
+    border:1px dashed var(--border); border-radius:12px;
+    color:var(--muted); font-size:.95rem;
+  }
+
+  /* ESTILO PARA EL BOTÓN DE DISCORD EN GRASSLAND */
+  .discord-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  .discord-btn {
+    width: 80px; height: 80px; border-radius: 24px;
+    background: rgba(0,0,0,0.6); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+    margin-top: 15px; margin-bottom: 10px;
+  }
+  .discord-btn svg { width: 40px; height: 40px; fill: #5865F2; }
+  .discord-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #5865F2;
+    box-shadow: 0 12px 26px rgba(88, 101, 242, 0.4);
+  }
+  .discord-text {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  footer{
+    border-top:1px solid var(--border); background:rgba(0,0,0,.8);
+    padding:22px 18px; text-align:center; color:var(--muted); font-size:.9rem;
+    z-index: 10; backdrop-filter: blur(10px);
+  }
+  
+  /* NUEVO TEXTO DEL FOOTER */
+  .footer-warning {
+    margin: 0 0 10px 0;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  @media (max-width:650px){
+    .navbar{ padding: 0 10px; gap: 5px; }
+    .logo-img { height: 46px; width: 46px; }
+    .nav-links a{ padding: 6px 8px; font-size: 0.85rem; }
+    main { padding: 40px 15px 60px; }
+    .page-title { font-size: 3rem; margin-bottom: 5px; }
+    .page-sub { font-size: 0.85rem; margin-bottom: 30px; }
+    .card { padding: 20px 18px; }
+    .card h2 { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+  <img src="SS_Cherry_Wallpaper_04.jpg" class="bg-image" alt="Fondo GrassLand">
+  <div class="bg-overlay"></div>
+
+  <nav class="navbar">
+    <a href="index.html" title="Inicio">
+      <img src="ih_studio_logo.png" alt="iH Studio" class="logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Minecraft</a></li>
+      <li><a href="grassland.html" class="active">GrassLand</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 class="page-title">GrassLand</h1>
+    <p class="page-sub">Serie de Minecraft de iH Studio</p>
+
+    <div class="card">
+      <h2>Sobre la serie</h2>
+      <p>
+        GrassLand es una serie de Minecraft creada por iH Studio que se trata de
+        <span class="placeholder">(aquí va el lore próximamente)</span>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Participantes</h2>
+      <p class="placeholder">Los participantes son:</p>
+      <div class="empty">Aún no hay participantes confirmados.</div>
+    </div>
+
+    <!-- NUEVA CÁPSULA DE DISCORD -->
+    <div class="card discord-card">
+      <h2>Únete a nuestro Discord</h2>
+      <a href="https://discord.gg/MrWATVpUKh" target="_blank" rel="noopener" class="discord-btn" title="Unirse al Discord de iH Studio">
+        <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+        </svg>
+      </a>
+      <p class="discord-text">¡Haz clic para unirte al servidor!</p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-warning">Cualquier Error/Bug que encuentres en esta Pagina web, Informar abriendo ticket Dentro del server de discord</p>
+    Copyright &copy; <span id="year"></span> iH Studio. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
