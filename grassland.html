@@ -18,17 +18,13 @@
   }
   *{box-sizing:border-box;}
   
-  html { 
-    background-color: var(--bg-fallback); 
-    overflow-x: hidden; 
-  }
+  html { background-color: var(--bg-fallback); overflow-x: hidden; }
   
   body{
     margin:0; min-height:100vh; display:flex; flex-direction:column;
     font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
     color:var(--text); padding-top:var(--nav-h);
-    position: relative; z-index: 1;
-    overflow-x: hidden;
+    position: relative; z-index: 1; overflow-x: hidden;
   }
 
   .bg-image {
@@ -50,13 +46,7 @@
     backdrop-filter:blur(12px); border-bottom:1px solid var(--border); z-index:1000;
   }
   
-  .logo-img {
-    height: 56px; 
-    width: 56px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-  }
+  .logo-img { height: 56px; width: 56px; object-fit: cover; border-radius: 8px; display: block; }
 
   .nav-links{list-style:none; display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:0 0 0 auto; padding:0;}
   .nav-links li{display:flex; align-items:center;}
@@ -68,17 +58,13 @@
   main{flex:1; width:100%; max-width:900px; margin:0 auto; padding:70px 22px 90px;}
 
   .page-title{
-    margin:0 0 12px; text-align:center;
-    font-size:clamp(2.6rem,8vw,4.8rem);
-    font-weight:900; letter-spacing:-1.5px;
-    color:var(--green);
+    margin:0 0 12px; text-align:center; font-size:clamp(2.6rem,8vw,4.8rem);
+    font-weight:900; letter-spacing:-1.5px; color:var(--green);
     text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 30px rgba(74,222,74,.5);
   }
   .page-sub{ 
-    text-align:center; color:#e2e8f0; margin:0 0 40px; 
-    font-size:1rem; letter-spacing:2px; text-transform:uppercase;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-    font-weight: 600;
+    text-align:center; color:#e2e8f0; margin:0 0 40px; font-size:1rem; 
+    letter-spacing:2px; text-transform:uppercase; text-shadow: 0 2px 8px rgba(0,0,0,0.9); font-weight: 600;
   }
 
   .card{
@@ -96,33 +82,19 @@
     color:var(--muted); font-size:.95rem;
   }
 
-  /* ESTILO PARA EL BOTÓN DE DISCORD EN GRASSLAND */
   .discord-card {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
+    text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px;
   }
   .discord-btn {
-    width: 80px; height: 80px; border-radius: 24px;
-    background: rgba(0,0,0,0.6); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform .2s, border-color .2s, box-shadow .2s;
+    width: 80px; height: 80px; border-radius: 24px; background: rgba(0,0,0,0.6); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; transition: transform .2s, border-color .2s, box-shadow .2s;
     margin-top: 15px; margin-bottom: 10px;
   }
   .discord-btn svg { width: 40px; height: 40px; fill: #5865F2; }
   .discord-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    border-color: #5865F2;
-    box-shadow: 0 12px 26px rgba(88, 101, 242, 0.4);
+    transform: translateY(-5px) scale(1.05); border-color: #5865F2; box-shadow: 0 12px 26px rgba(88, 101, 242, 0.4);
   }
-  .discord-text {
-    font-size: 1rem;
-    color: var(--muted);
-    font-weight: 500;
-  }
+  .discord-text { font-size: 1rem; color: var(--muted); font-weight: 500; }
 
   footer{
     border-top:1px solid var(--border); background:rgba(0,0,0,.8);
@@ -130,13 +102,7 @@
     z-index: 10; backdrop-filter: blur(10px);
   }
   
-  /* NUEVO TEXTO DEL FOOTER */
-  .footer-warning {
-    margin: 0 0 10px 0;
-    color: #e2e8f0;
-    font-size: 0.95rem;
-    font-weight: 600;
-  }
+  .footer-warning { margin: 0 0 10px 0; color: #e2e8f0; font-size: 0.95rem; font-weight: 600; }
 
   @media (max-width:650px){
     .navbar{ padding: 0 10px; gap: 5px; }
@@ -162,6 +128,7 @@
     <ul class="nav-links">
       <li><a href="index.html">Minecraft</a></li>
       <li><a href="grassland.html" class="active">GrassLand</a></li>
+      <li><a href="unete.html">Únete</a></li>
     </ul>
   </nav>
 
@@ -183,7 +150,6 @@
       <div class="empty">Aún no hay participantes confirmados.</div>
     </div>
 
-    <!-- NUEVA CÁPSULA DE DISCORD -->
     <div class="card discord-card">
       <h2>Únete a nuestro Discord</h2>
       <a href="https://discord.gg/MrWATVpUKh" target="_blank" rel="noopener" class="discord-btn" title="Unirse al Discord de iH Studio">
@@ -199,9 +165,6 @@
     <p class="footer-warning">Cualquier Error/Bug que encuentres en esta Pagina web, Informar abriendo ticket Dentro del server de discord</p>
     Copyright &copy; <span id="year"></span> iH Studio. Todos los derechos reservados.
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
