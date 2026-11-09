@@ -79,6 +79,29 @@
   .card p { margin:0; color:#e2e8f0; font-size: 1.1rem; }
   .card .highlight { color: var(--green); font-weight: bold; }
 
+  /* BOTÓN MÁS INFORMACIÓN */
+  .btn-more-info {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 35px;
+    padding: 12px 35px;
+    background: rgba(139, 92, 246, 0.2);
+    color: #ffffff;
+    border: 1px solid var(--accent);
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .btn-more-info:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+  }
+
   .discord-card {
     background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border); border-radius: 18px;
     backdrop-filter: blur(8px); box-shadow: 0 8px 32px rgba(0,0,0,0.5);
@@ -107,20 +130,20 @@
 
   @media (max-width:650px){
     .navbar{ padding: 0 10px; gap: 5px; }
-    .logo-img { height: 46px; width: 46px; }
-    .nav-links a{ padding: 6px 8px; font-size: 0.85rem; }
+    .logo-img { height: 40px; width: 40px; }
+    .nav-links a{ padding: 6px 8px; font-size: 0.8rem; }
     main { padding: 40px 15px 60px; }
     .page-title { font-size: 3rem; }
     .page-sub { font-size: 0.95rem; }
     .card { padding: 20px 18px; }
     .card h2 { font-size: 1.2rem; }
     .card p { font-size: 1rem; }
+    .btn-more-info { padding: 10px 25px; font-size: 0.95rem; margin-bottom: 25px; }
   }
 </style>
 </head>
 <body>
 
-  <!-- IMAGEN DE FONDO ACTUALIZADA -->
   <img src="unete_fondo.png" class="bg-image" alt="Fondo Únete">
   <div class="bg-overlay"></div>
 
@@ -131,8 +154,9 @@
     <ul class="nav-links">
       <li><a href="index.html">Minecraft</a></li>
       <li><a href="grassland.html">GrassLand</a></li>
-      <li><a href="launcher.html">Launcher</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
       <li><a href="unete.html" class="active">Únete</a></li>
+      <li><a href="se_busca.html">SE BUSCA</a></li>
     </ul>
   </nav>
 
@@ -144,6 +168,8 @@
       <h2>¿Quiénes somos?</h2>
       <p>iH Studio es un Equipo Creativo donde buscamos gente que de verdad quiera ser parte de una serie de Minecraft o de juegos. No buscamos solo rellenar un servidor, sino encontrar personas apasionadas que quieran aportar su granito de arena y divertirse creando.</p>
     </div>
+
+    <a href="se_busca.html" class="btn-more-info">Más Información</a>
 
     <div class="card">
       <h2>¿Qué ofrecemos?</h2>

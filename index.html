@@ -92,7 +92,23 @@
   .social:hover{transform:translateY(-5px); border-color:currentColor; box-shadow:0 12px 26px rgba(0,0,0,.6);}
   .social-label{display:block; text-align:center; color:#e2e8f0; font-size:.85rem; margin-top:10px; font-weight: 600; text-shadow: 0 2px 4px #000;}
 
-  .studios-section { margin-top: 40px; text-align: center; padding-bottom: 40px; }
+  /* CÁPSULA DEL LAUNCHER */
+  .launcher-capsule {
+    margin: 40px auto;
+    max-width: 680px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid var(--accent);
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .launcher-capsule h2 { color: #ffffff; margin: 0 0 10px 0; font-size: 1.4rem; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+  .launcher-capsule p { color: #c4b5fd; margin: 0; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 0.95rem; }
+
+  /* SECCIÓN STUDIOS */
+  .studios-section { margin-top: 20px; text-align: center; padding-bottom: 40px; }
 
   .capsule {
     display: inline-flex; flex-direction: column; align-items: center;
@@ -129,8 +145,8 @@
 
   @media (max-width:650px){
     .navbar{ padding: 0 10px; gap: 5px; }
-    .logo-img { height: 46px; width: 46px; }
-    .nav-links a{ padding: 6px 8px; font-size: 0.85rem; }
+    .logo-img { height: 40px; width: 40px; }
+    .nav-links a{ padding: 6px 8px; font-size: 0.8rem; }
     main { padding: 40px 15px 60px; }
     .hero h1 { font-size: 2rem; }
     .subtext-box { font-size: 1rem; padding: 15px; margin-top: 20px; }
@@ -160,8 +176,9 @@
     <ul class="nav-links">
       <li><a href="index.html" class="active">Minecraft</a></li>
       <li><a href="grassland.html">GrassLand</a></li>
-      <li><a href="launcher.html">Launcher</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
       <li><a href="unete.html">Únete</a></li>
+      <li><a href="se_busca.html">SE BUSCA</a></li>
     </ul>
   </nav>
 
@@ -204,6 +221,12 @@
         </div>
       </div>
     </section>
+
+    <!-- NUEVA CÁPSULA DEL LAUNCHER -->
+    <div class="launcher-capsule">
+      <h2>Launcher de iH Studio</h2>
+      <p>Próximamente</p>
+    </div>
 
     <section class="studios-section">
       <div class="capsule">
