@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iH Studio — Launcher</title>
+<link rel="icon" type="image/png" href="ih_studio_web_logo.png">
+<style>
+  :root{
+    --bg-fallback: #0a1c2e;
+    --panel: rgba(21, 26, 33, 0.7);
+    --text:#e9edf2;
+    --muted:#a0b0c4;
+    --border: rgba(255, 255, 255, 0.15);
+    --green:#4ade4a;
+    --accent:#8b5cf6;
+    --nav-h: 72px;
+  }
+  *{box-sizing:border-box;}
+  
+  html { background-color: var(--bg-fallback); overflow-x: hidden; }
+  
+  body{
+    margin:0; min-height:100vh; display:flex; flex-direction:column;
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color:var(--text); padding-top:var(--nav-h);
+    position: relative; z-index: 1; overflow-x: hidden;
+  }
+
+  .bg-image {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    object-fit: cover; z-index: -2; opacity: 0.75; filter: blur(2px);
+  }
+
+  .bg-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.35); z-index: -1; pointer-events: none;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .navbar{
+    position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+    display:flex; align-items:center; gap:16px; padding:0 20px;
+    background:rgba(0, 0, 0, 0.85);
+    backdrop-filter:blur(12px); border-bottom:1px solid var(--border); z-index:1000;
+  }
+  
+  .logo-img { height: 56px; width: 56px; object-fit: cover; border-radius: 8px; display: block; }
+
+  .nav-links{list-style:none; display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:0 0 0 auto; padding:0;}
+  .nav-links li{display:flex; align-items:center;}
+  .nav-links li + li::before{content:"|"; color:var(--border); margin:0 2px;}
+  .nav-links a{display:block; padding:8px 14px; border-radius:9px; color:var(--muted); font-weight:600; font-size:.95rem; transition:.18s;}
+  .nav-links a:hover{color:#fff; background:rgba(255,255,255,.1);}
+  .nav-links a.active{color:#fff; background:rgba(139,92,246,.35);}
+
+  main{flex:1; width:100%; max-width:900px; margin:0 auto; padding:70px 22px 90px; text-align: center;}
+  
+  .page-title{
+    margin:0 0 12px; font-size:clamp(2.6rem,8vw,4.8rem);
+    font-weight:900; letter-spacing:-1.5px; color:#ffffff;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+  }
+  .hl{color:var(--accent);}
+  .page-sub{ 
+    text-align:center; color:#e2e8f0; margin:0 0 40px; 
+    font-size:1.1rem; letter-spacing:1px; text-shadow: 0 2px 8px rgba(0,0,0,0.9); font-weight: 600;
+  }
+
+  .card{
+    background:rgba(0,0,0,0.6); border:1px solid var(--border);
+    border-radius:18px; padding:40px 25px; margin-bottom:24px;
+    line-height:1.7; backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4); text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  }
+  
+  .card h2 { margin:0 0 15px; font-size:1.6rem; color:#ffffff; }
+  .card p { margin:0; color:#e2e8f0; font-size: 1.1rem; }
+  
+  .status-badge {
+    display: inline-block;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--accent);
+    color: #c4b5fd;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  footer{
+    border-top:1px solid var(--border); background:rgba(0,0,0,.8);
+    padding:22px 18px; text-align:center; color:var(--muted); font-size:.9rem;
+    z-index: 10; backdrop-filter: blur(10px);
+  }
+  
+  .footer-warning { margin: 0 0 10px 0; color: #e2e8f0; font-size: 0.95rem; font-weight: 600; }
+
+  @media (max-width:650px){
+    .navbar{ padding: 0 10px; gap: 5px; }
+    .logo-img { height: 46px; width: 46px; }
+    .nav-links a{ padding: 6px 8px; font-size: 0.85rem; }
+    main { padding: 40px 15px 60px; }
+    .page-title { font-size: 3rem; }
+    .page-sub { font-size: 0.95rem; }
+    .card { padding: 30px 18px; }
+    .card h2 { font-size: 1.4rem; }
+    .card p { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- IMAGEN DE FONDO ACTUALIZADA -->
+  <img src="launcher_fondo.png" class="bg-image" alt="Fondo Launcher">
+  <div class="bg-overlay"></div>
+
+  <nav class="navbar">
+    <a href="index.html" title="Inicio">
+      <img src="ih_studio_logo.png" alt="iH Studio" class="logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Minecraft</a></li>
+      <li><a href="grassland.html">GrassLand</a></li>
+      <li><a href="launcher.html" class="active">Launcher</a></li>
+      <li><a href="unete.html">Únete</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 class="page-title">iH <span class="hl">Launcher</span></h1>
+    <p class="page-sub">El futuro de tu experiencia en Minecraft</p>
+
+    <div class="card">
+      <h2>En Desarrollo...</h2>
+      <p>Estamos construyendo nuestro propio Launcher de Minecraft. Pronto podrás disfrutar de una experiencia optimizada, con mods integrados y acceso directo a todos los proyectos de iH Studio.</p>
+      
+      <div class="status-badge">Próximamente</div>
+    </div>
+
+    <div class="card">
+      <p style="font-size: 1rem; color: var(--muted);">Si quieres estar al tanto del lanzamiento, únete a nuestro Discord y mantente atento a los anuncios.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-warning">Cualquier Error/Bug que encuentres en esta Pagina web, Informar abriendo ticket Dentro del server de discord</p>
+    Copyright &copy; <span id="year"></span> iH Studio. Todos los derechos reservados.
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
