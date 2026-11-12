@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iH Studio — White Studios</title>
+<link rel="icon" type="image/png" href="ih_studio_web_logo.png">
+<style>
+  :root{
+    --bg-fallback: #0a1c2e;
+    --text:#e9edf2;
+    --muted:#a0b0c4;
+    --border: rgba(255, 255, 255, 0.15);
+    --accent:#8b5cf6;
+    --nav-h: 72px;
+  }
+  *{box-sizing:border-box;}
+  html { background-color: var(--bg-fallback); overflow-x: hidden; }
+  body{
+    margin:0; min-height:100vh; display:flex; flex-direction:column;
+    font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    color:var(--text); padding-top:var(--nav-h);
+    position: relative; z-index: 1; overflow-x: hidden;
+  }
+  .bg-image { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; opacity: 0.75; filter: blur(2px); }
+  .bg-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.35); z-index: -1; pointer-events: none; }
+  a{color:inherit;text-decoration:none;}
+  .navbar{
+    position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+    display:flex; align-items:center; gap:16px; padding:0 20px;
+    background:rgba(0, 0, 0, 0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); z-index:1000;
+  }
+  .logo-img { height: 56px; width: 56px; object-fit: cover; border-radius: 8px; display: block; }
+  .nav-links{list-style:none; display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:0 0 0 auto; padding:0;}
+  .nav-links li{display:flex; align-items:center;}
+  .nav-links li + li::before{content:"|"; color:var(--border); margin:0 2px;}
+  .nav-links a{display:block; padding:8px 14px; border-radius:9px; color:var(--muted); font-weight:600; font-size:.95rem; transition:.18s;}
+  .nav-links a:hover{color:#fff; background:rgba(255,255,255,.1);}
+  
+  main{flex:1; width:100%; max-width:900px; margin:0 auto; padding:70px 22px 90px; text-align: center;}
+  
+  .page-title{ margin:0 0 12px; font-size:clamp(2.6rem,8vw,4.8rem); font-weight:900; letter-spacing:-1.5px; color:#ffffff; text-shadow: 0 4px 15px rgba(0,0,0,0.9); }
+  .page-sub{ text-align:center; color:#e2e8f0; margin:0 0 40px; font-size:1.1rem; letter-spacing:1px; text-shadow: 0 2px 8px rgba(0,0,0,0.9); font-weight: 600; }
+
+  .card{
+    background:rgba(0,0,0,0.6); border:1px solid var(--border);
+    border-radius:18px; padding:40px 30px; margin-bottom:24px;
+    line-height:1.7; backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4); text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+    max-width: 600px; margin-left: auto; margin-right: auto;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  
+  .studio-big-logo {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+  }
+
+  .card p { margin:0 0 25px 0; color:#e2e8f0; font-size: 1.1rem; text-align: center; }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-web {
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #a0b0c4;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: not-allowed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-discord {
+    padding: 12px 25px;
+    background: #5865F2;
+    color: #ffffff;
+    border: 1px solid #5865F2;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-discord svg { width: 20px; height: 20px; fill: currentColor; }
+
+  .btn-discord:hover {
+    background: #4752C4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+  }
+
+  footer{
+    border-top:1px solid var(--border); background:rgba(0,0,0,.8);
+    padding:22px 18px; text-align:center; color:var(--muted); font-size:.9rem;
+    z-index: 10; backdrop-filter: blur(10px);
+  }
+  .footer-warning { margin: 0 0 10px 0; color: #e2e8f0; font-size: 0.95rem; font-weight: 600; }
+
+  @media (max-width:650px){
+    .navbar{ padding: 0 10px; gap: 5px; }
+    .logo-img { height: 40px; width: 40px; }
+    .nav-links a{ padding: 6px 8px; font-size: 0.8rem; }
+    main { padding: 40px 15px 60px; }
+    .page-title { font-size: 2.5rem; }
+    .card { padding: 30px 20px; }
+    .action-buttons { flex-direction: column; }
+    .btn-web, .btn-discord { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+  <img src="unete_fondo.png" class="bg-image" alt="Fondo White Studios">
+  <div class="bg-overlay"></div>
+
+  <nav class="navbar">
+    <a href="index.html" title="Inicio">
+      <img src="ih_studio_logo.png" alt="iH Studio" class="logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Minecraft</a></li>
+      <li><a href="grassland.html">GrassLand</a></li>
+      <li><a href="juegos.html">Juegos</a></li>
+      <li><a href="unete.html">Únete</a></li>
+      <li><a href="se_busca.html">SE BUSCA</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 class="page-title">White Studios</h1>
+    <p class="page-sub">Partners oficiales de iH Studio</p>
+
+    <div class="card">
+      <img src="white_studios_logo.png" alt="White Studios" class="studio-big-logo">
+      
+      <p>Ayudamos a White Studios en el desarrollo de <strong>Whitesafio Beta</strong> (imitación a Dedsafio 4) y en la creación de Modelos para skins. ¡Visita sus plataformas!</p>
+
+      <div class="action-buttons">
+        <!-- Botón Web Deshabilitado -->
+        <span class="btn-web">Página Web (Próximamente)</span>
+        
+        <!-- Botón Discord con el nuevo enlace -->
+        <a href="https://discord.gg/YDy5BuuarU" target="_blank" rel="noopener" class="btn-discord">
+          <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+          </svg>
+          Unirse al Discord
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer-warning">Cualquier Error/Bug que encuentres en esta Pagina web, Informar abriendo ticket Dentro del server de discord</p>
+    Copyright &copy; <span id="year"></span> iH Studio. Todos los derechos reservados.
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
