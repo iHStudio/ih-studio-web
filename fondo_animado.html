@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fondo iH Studio</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000000;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  }
+
+  /* Contenedor rotado 45 grados */
+  .wrapper {
+    position: fixed;
+    top: -50vh;
+    left: -50vw;
+    width: 200vw;
+    height: 200vh;
+    transform: rotate(45deg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    pointer-events: none;
+    gap: 7px; /* Columnas separadas por 7px */
+  }
+
+  /* Filas (columnas diagonales) */
+  .marquee-row {
+    display: flex;
+    white-space: nowrap;
+    font-size: 3rem; /* Letras grandes */
+    font-weight: 900;
+    color: #666666; 
+    text-transform: uppercase;
+    letter-spacing: 10px; 
+    line-height: 1.1; 
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Texto animado */
+  .marquee-content {
+    display: inline-block;
+    padding-right: 10px;
+    animation: marquee 300s linear infinite; /* ¡Mucho más lento! (300 segundos) */
+  }
+
+  /* Filas pares van en dirección contraria */
+  .marquee-row:nth-child(even) .marquee-content {
+    animation-direction: reverse;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+  
+  <!-- Contenedor del texto -->
+  <div class="wrapper" id="wrapper"></div>
+
+  <script>
+    const wrapper = document.getElementById('wrapper');
+    
+    // Mantenemos los 5 espacios después de Studio
+    const textoConEspacios = "iH Studio     "; 
+    const textoRepetido = textoConEspacios.repeat(20); 
+    
+    // Generamos las 80 filas
+    for (let i = 0; i < 80; i++) {
+      const row = document.createElement('div');
+      row.className = 'marquee-row';
+      row.innerHTML = `
+        <span class="marquee-content">${textoRepetido}</span>
+        <span class="marquee-content">${textoRepetido}</span>
+      `;
+      wrapper.appendChild(row);
+    }
+  </script>
+
+</body>
+</html>
